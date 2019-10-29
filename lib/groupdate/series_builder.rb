@@ -171,10 +171,12 @@ module Groupdate
         if time_range.first
           series = [round_time(time_range.first)]
 
+          interval = options[:interval] || 1
+
           if period == :quarter
-            step = 3.months
+            step = 3.months * interval
           else
-            step = 1.send(period)
+            step = interval.send(period)
           end
 
           last_step = series.last
